@@ -14,7 +14,7 @@ jxRequirements:
     owner: mellard-org
     repository: jx3v4
   ingress:
-    domain: ""
+    domain: 20.193.56.105.nip.io
     externalDNS: false
     namespaceSubDomain: -jx.
     tls:
