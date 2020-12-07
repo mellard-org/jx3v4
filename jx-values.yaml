@@ -1,6 +1,4 @@
-apiVersion: core.jenkins-x.io/v4beta1
-kind: Requirements
-spec:
+jxRequirements:
   autoUpdate:
     enabled: false
     schedule: ""
@@ -16,7 +14,7 @@ spec:
     owner: mellard-org
     repository: jx3v4
   ingress:
-    domain: 20.193.56.105.nip.io
+    domain: ""
     externalDNS: false
     namespaceSubDomain: -jx.
     tls:
@@ -29,3 +27,9 @@ spec:
   secretStorage: vault
   vault: {}
   webhook: lighthouse
+jxRequirementsIngressExternalDNS:
+  enabled: false
+jxRequirementsIngressTLS:
+  enabled: false
+jxRequirementsVault:
+  enabled: true

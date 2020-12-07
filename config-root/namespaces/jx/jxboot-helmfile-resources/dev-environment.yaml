@@ -1,0 +1,63 @@
+apiVersion: jenkins.io/v1
+kind: Environment
+metadata:
+  creationTimestamp: null
+  labels:
+    env: dev
+    team: jx
+    gitops.jenkins-x.io/pipeline: 'namespaces'
+  name: dev
+  namespace: jx
+spec:
+  kind: Development
+  label: Development
+  namespace: jx
+  previewGitInfo:
+    user: {}
+  promotionStrategy: Never
+  source:
+    ref: master
+    url: https://github.com/mellard-org/jx3v4.git
+  teamSettings:
+    appsRepository: http://chartmuseum.jenkins-x.io
+    bootRequirements: |
+      autoUpdate:
+        enabled: false
+        schedule: ""
+      cluster:
+        chartRepository: http://jenkins-x-chartmuseum.jx.svc.cluster.local:8080
+        gitKind: github
+        gitName: github
+        gitServer: https://github.com
+        provider: aks
+        registry: composedshiner.azurecr.io
+      environments:
+      - key: dev
+        owner: mellard-org
+        repository: jx3v4
+      ingress:
+        domain: ""
+        externalDNS: false
+        namespaceSubDomain: -jx.
+        tls:
+          email: ""
+          enabled: false
+          production: false
+      pipelineUser:
+        username: chris-mellard
+      repository: nexus
+      secretStorage: vault
+      vault: {}
+      webhook: lighthouse
+    defaultScheduler:
+      apiVersion: jenkins.io/v1
+      kind: Scheduler
+      name: jx-meta-pipeline
+    gitServer: https://github.com
+    kubeProvider: aks
+    pipelineUserEmail: jenkins-x@googlegroups.com
+    pipelineUsername: chris-mellard
+    promotionEngine: Prow
+    prowConfig: Scheduler
+  webHookEngine: Lighthouse
+status: {}
