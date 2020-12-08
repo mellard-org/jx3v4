@@ -16,4 +16,4 @@ spec:
               serviceName: nexus
               servicePort: 80
             path: "/"
-      host: nexus-jx.20.193.56.105.nip.io
+      host: nexus-jx.jx3v4.nelson.datacom.build
