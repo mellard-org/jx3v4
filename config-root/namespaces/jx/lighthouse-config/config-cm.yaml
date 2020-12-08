@@ -41,7 +41,7 @@ data:
         - needs-rebase
         repos:
         - mellard-org/jx3v4
-      target_url: http://dashboard-jx.20.193.56.105.nip.io
+      target_url: http://dashboard-jx.jx3v4.nelson.datacom.build
 kind: ConfigMap
 metadata:
   creationTimestamp: null

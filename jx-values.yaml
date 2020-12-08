@@ -8,13 +8,13 @@ jxRequirements:
     gitName: github
     gitServer: https://github.com
     provider: aks
-    registry: composedshiner.azurecr.io
+    registry: happymudfish.azurecr.io
   environments:
   - key: dev
     owner: mellard-org
     repository: jx3v4
   ingress:
-    domain: 20.193.56.105.nip.io
+    domain: jx3v4.nelson.datacom.build
     externalDNS: false
     namespaceSubDomain: -jx.
     tls:
