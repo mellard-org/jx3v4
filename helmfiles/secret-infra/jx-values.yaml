@@ -1,0 +1,46 @@
+jx:
+  imagePullSecrets: []
+  secrets:
+    adminUser:
+      password: todo
+      username: todo
+    hmacToken: todo
+    pipelineUser:
+      email: jenkins-x@googlegroups.com
+      token: todo
+      username: jenkins-x-labs-bot
+jxRequirements:
+  autoUpdate:
+    enabled: false
+    schedule: ""
+  cluster:
+    chartRepository: http://jenkins-x-chartmuseum.jx.svc.cluster.local:8080
+    gitKind: github
+    gitName: github
+    gitServer: https://github.com
+    provider: aks
+    registry: happymudfish.azurecr.io
+  environments:
+  - key: dev
+    owner: mellard-org
+    repository: jx3v4
+  ingress:
+    domain: jx3v4.nelson.datacom.build
+    externalDNS: false
+    namespaceSubDomain: -secret-infra.
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  pipelineUser:
+    username: chris-mellard
+  repository: nexus
+  secretStorage: vault
+  vault: {}
+  webhook: lighthouse
+jxRequirementsIngressExternalDNS:
+  enabled: false
+jxRequirementsIngressTLS:
+  enabled: false
+jxRequirementsVault:
+  enabled: true
