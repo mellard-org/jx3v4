@@ -1,63 +1,41 @@
+# Source: jxboot-helmfile-resources/templates/environments.yaml
 apiVersion: jenkins.io/v1
 kind: Environment
 metadata:
-  creationTimestamp: null
   labels:
-    env: dev
+    env: "dev"
     team: jx
     gitops.jenkins-x.io/pipeline: 'namespaces'
-  name: dev
+  name: "dev"
   namespace: jx
 spec:
+  source:
+    ref: "master"
+    url: https://github.com/mellard-org/jx3v4.git
   kind: Development
   label: Development
   namespace: jx
-  previewGitInfo:
-    user: {}
-  promotionStrategy: Never
-  source:
-    ref: master
-    url: https://github.com/mellard-org/jx3v4.git
+  promotionStrategy: "Never"
+  webHookEngine: "Lighthouse"
   teamSettings:
     appsRepository: http://chartmuseum.jenkins-x.io
-    bootRequirements: |
-      autoUpdate:
-        enabled: false
-        schedule: ""
-      cluster:
-        chartRepository: http://jenkins-x-chartmuseum.jx.svc.cluster.local:8080
-        gitKind: github
-        gitName: github
-        gitServer: https://github.com
-        provider: aks
-        registry: happymudfish.azurecr.io
-      environments:
-      - key: dev
-        owner: mellard-org
-        repository: jx3v4
-      ingress:
-        domain: jx3v4.nelson.datacom.build
-        externalDNS: false
-        namespaceSubDomain: -jx.
-        tls:
-          email: ""
-          enabled: false
-          production: false
-      pipelineUser:
-        username: chris-mellard
-      repository: nexus
-      secretStorage: vault
-      vault: {}
-      webhook: lighthouse
+    buildPackRef: "master"
+    buildPackUrl: "https://github.com/jenkins-x/jxr-packs-kubernetes.git"
     defaultScheduler:
       apiVersion: jenkins.io/v1
       kind: Scheduler
       name: jx-meta-pipeline
+    dockerRegistryOrg: ""
+    envOrganisation:
     gitServer: https://github.com
-    kubeProvider: aks
-    pipelineUserEmail: jenkins-x@googlegroups.com
-    pipelineUsername: chris-mellard
-    promotionEngine: Prow
+    helmTemplate: true
+    kubeProvider: "aks"
+    pipelineUsername: "chris-mellard"
+    pipelineUserEmail: "jenkins-x@googlegroups.com"
     prowConfig: Scheduler
-  webHookEngine: Lighthouse
-status: {}
+    importMode: YAML
+    promotionEngine: Prow
+    prowEngine: Tekton
+    versionStreamUrl: "https://github.com/jenkins-x/jenkins-x-versions.git"
+    versionStreamRef: "master"
+    useGitOps: true
