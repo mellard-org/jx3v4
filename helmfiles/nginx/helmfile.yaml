@@ -11,7 +11,7 @@ releases:
 - chart: ingress-nginx/ingress-nginx
   name: nginx-ingress
   values:
-  - ../../versionStream/charts/stable/ingress-nginx/values.yaml.gotmpl
+  - ../../versionStream/charts/stable/nginx-ingress/values.yaml.gotmpl
   - jx-values.yaml
   forceNamespace: ""
   skipDeps: null
