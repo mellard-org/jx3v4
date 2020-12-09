@@ -26,6 +26,7 @@ spec:
         app.kubernetes.io/instance: external-ddns
         app.kubernetes.io/managed-by: Helm
       annotations:
+        checksum/secret: a22c9571b533038d998a27f1d589d5157f75c8340b1c2698cdf61fbcc59b0509
     spec:
       securityContext:
         fsGroup: 1001
@@ -45,6 +46,8 @@ spec:
             - --registry=txt
             - --interval=1m
             - --source=ingress
+            # Azure Arguments
+            - --azure-resource-group=secret
           env:
           ports:
             - name: http
@@ -76,4 +79,4 @@ spec:
         # Azure volume(s)
         - name: azure-config-file
           secret:
-            secretName: external-dns
+            secretName: external-ddns-external-dns
