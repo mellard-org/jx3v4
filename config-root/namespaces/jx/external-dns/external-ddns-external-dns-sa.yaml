@@ -1,0 +1,12 @@
+# Source: external-dns/templates/serviceaccount.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: external-ddns-external-dns
+  labels:
+    app.kubernetes.io/name: external-dns
+    helm.sh/chart: external-dns-3.2.0
+    app.kubernetes.io/instance: external-ddns
+    app.kubernetes.io/managed-by: Helm
+    gitops.jenkins-x.io/pipeline: 'namespaces'
+  namespace: jx
