@@ -1,35 +1,33 @@
-# Source: ingress-nginx/templates/controller-role.yaml
+# Source: ingress-nginx/templates/clusterrole.yaml
 apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
+kind: ClusterRole
 metadata:
   labels:
-    helm.sh/chart: ingress-nginx-3.13.0
+    helm.sh/chart: ingress-nginx-3.12.0
     app.kubernetes.io/name: ingress-nginx
     app.kubernetes.io/instance: nginx-ingress
     app.kubernetes.io/version: "0.41.2"
     app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/component: controller
-    gitops.jenkins-x.io/pipeline: 'namespaces'
-  name: nginx-ingress-ingress-nginx
-  namespace: nginx
+    gitops.jenkins-x.io/pipeline: 'cluster'
+  name: ingress-nginx
 rules:
   - apiGroups:
       - ""
     resources:
-      - namespaces
+      - configmaps
+      - endpoints
+      - nodes
+      - pods
+      - secrets
     verbs:
-      - get
+      - list
+      - watch
   - apiGroups:
       - ""
     resources:
-      - configmaps
-      - pods
-      - secrets
-      - endpoints
+      - nodes
     verbs:
       - get
-      - list
-      - watch
   - apiGroups:
       - ""
     resources:
@@ -49,6 +47,13 @@ rules:
       - list
       - watch
   - apiGroups:
+      - ""
+    resources:
+      - events
+    verbs:
+      - create
+      - patch
+  - apiGroups:
       - extensions
       - "networking.k8s.io" # k8s 1.14+
     resources:
@@ -63,33 +68,3 @@ rules:
       - get
       - list
       - watch
-  - apiGroups:
-      - ""
-    resources:
-      - configmaps
-    resourceNames:
-      - ingress-controller-leader-nginx
-    verbs:
-      - get
-      - update
-  - apiGroups:
-      - ""
-    resources:
-      - configmaps
-    verbs:
-      - create
-  - apiGroups:
-      - ""
-    resources:
-      - endpoints
-    verbs:
-      - create
-      - get
-      - update
-  - apiGroups:
-      - ""
-    resources:
-      - events
-    verbs:
-      - create
-      - patch
