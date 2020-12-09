@@ -7,4 +7,3 @@ helmfiles:
 templates: {}
 missingFileHandler: ""
 renderedvalues: {}
-
