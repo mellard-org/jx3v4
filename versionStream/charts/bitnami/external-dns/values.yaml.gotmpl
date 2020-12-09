@@ -16,7 +16,6 @@ google:
 {{- else if eq .Values.jxRequirements.cluster.provider "aks" }}
 provider: azure
 azure:
-  secretName: external-dns
   resourceGroup: secret
   tenantId: secret
   subscriptionId: secret
