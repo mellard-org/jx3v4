@@ -16,7 +16,7 @@ repositories:
 releases:
 - chart: bitnami/external-dns
   version: 3.2.0
-  name: external-ddns
+  name: external-dns
   values:
   - ../../versionStream/charts/bitnami/external-dns/values.yaml.gotmpl
   - jx-values.yaml
