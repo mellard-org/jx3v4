@@ -17,6 +17,10 @@ google:
 provider: azure
 azure:
   secretName: external-dns
+  resourceGroup: secret
+  tenantId: secret
+  subscriptionId: secret
+  useManagedIdentityExtension: true
 {{- end }}
 
 rbac:
