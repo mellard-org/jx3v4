@@ -1,13 +1,13 @@
-# Source: ingress-nginx/templates/admission-webhooks/job-patch/serviceaccount.yaml
-apiVersion: v1
-kind: ServiceAccount
+# Source: ingress-nginx/templates/admission-webhooks/job-patch/rolebinding.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
 metadata:
-  name: nginx-ingress-ingress-nginx-admission
+  name: ingress-nginx-admission
   annotations:
     "helm.sh/hook": pre-install,pre-upgrade,post-install,post-upgrade
     "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
   labels:
-    helm.sh/chart: ingress-nginx-3.13.0
+    helm.sh/chart: ingress-nginx-3.12.0
     app.kubernetes.io/name: ingress-nginx
     app.kubernetes.io/instance: nginx-ingress
     app.kubernetes.io/version: "0.41.2"
@@ -15,3 +15,11 @@ metadata:
     app.kubernetes.io/component: admission-webhook
     gitops.jenkins-x.io/pipeline: 'namespaces'
   namespace: nginx
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: ingress-nginx-admission
+subjects:
+  - kind: ServiceAccount
+    name: ingress-nginx-admission
+    namespace: nginx

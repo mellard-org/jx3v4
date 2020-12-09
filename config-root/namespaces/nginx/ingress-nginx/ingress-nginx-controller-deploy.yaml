@@ -3,14 +3,14 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    helm.sh/chart: ingress-nginx-3.13.0
+    helm.sh/chart: ingress-nginx-3.12.0
     app.kubernetes.io/name: ingress-nginx
     app.kubernetes.io/instance: nginx-ingress
     app.kubernetes.io/version: "0.41.2"
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: controller
     gitops.jenkins-x.io/pipeline: 'namespaces'
-  name: nginx-ingress-ingress-nginx-controller
+  name: ingress-nginx-controller
   namespace: nginx
   annotations:
     wave.pusher.com/update-on-config-change: 'true'
@@ -42,14 +42,14 @@ spec:
                   - /wait-shutdown
           args:
             - /nginx-ingress-controller
-            - --publish-service=$(POD_NAMESPACE)/nginx-ingress-ingress-nginx-controller
+            - --publish-service=$(POD_NAMESPACE)/ingress-nginx-controller
             - --election-id=ingress-controller-leader
             - --ingress-class=nginx
-            - --configmap=$(POD_NAMESPACE)/nginx-ingress-ingress-nginx-controller
+            - --configmap=$(POD_NAMESPACE)/ingress-nginx-controller
             - --validating-webhook=:8443
             - --validating-webhook-certificate=/usr/local/certificates/cert
             - --validating-webhook-key=/usr/local/certificates/key
-            - --publish-service=nginx/nginx-ingress-controller
+            - --publish-service=nginx/ingress-nginx-controller
           securityContext:
             capabilities:
               drop:
@@ -109,9 +109,9 @@ spec:
               memory: 90Mi
       nodeSelector:
         kubernetes.io/os: linux
-      serviceAccountName: nginx-ingress-ingress-nginx
+      serviceAccountName: ingress-nginx
       terminationGracePeriodSeconds: 300
       volumes:
         - name: webhook-cert
           secret:
-            secretName: nginx-ingress-ingress-nginx-admission
+            secretName: ingress-nginx-admission
