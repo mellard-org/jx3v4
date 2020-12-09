@@ -11,6 +11,9 @@ spec:
     gitServer: https://github.com
     provider: aks
     registry: happymudfish.azurecr.io
+    azure:
+      secretStorage:
+        keyVaultName: potato
   environments:
   - key: dev
     owner: mellard-org
