@@ -12,10 +12,9 @@ spec:
     provider: aks
     registry: happymudfish.azurecr.io
     azure:
-      dns:
-        resourceGroup: potato
-        tenantId: potato
-        subscriptionId: potato
+      resourceGroup: potato
+      tenantId: potato
+      subscriptionId: potato
       secretStorage:
         keyVaultName: potato
   environments:
