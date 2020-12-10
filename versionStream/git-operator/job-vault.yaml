@@ -38,6 +38,8 @@ spec:
         env:
         - name: XDG_CONFIG_HOME
           value: /workspace/xdg_config
+        - name: AZURE_AD_RESOURCE
+          value: https://vault.azure.net
         image: mellardc/jx-secret:2.0
         imagePullPolicy: Always
         name: job
