@@ -2,11 +2,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: external-ddns-external-dns
+  name: external-dns
   labels:
     app.kubernetes.io/name: external-dns
     helm.sh/chart: external-dns-3.2.0
-    app.kubernetes.io/instance: external-ddns
+    app.kubernetes.io/instance: external-dns
     app.kubernetes.io/managed-by: Helm
     gitops.jenkins-x.io/pipeline: 'namespaces'
   namespace: jx
@@ -17,21 +17,21 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: external-dns
-      app.kubernetes.io/instance: external-ddns
+      app.kubernetes.io/instance: external-dns
   template:
     metadata:
       labels:
         app.kubernetes.io/name: external-dns
         helm.sh/chart: external-dns-3.2.0
-        app.kubernetes.io/instance: external-ddns
+        app.kubernetes.io/instance: external-dns
         app.kubernetes.io/managed-by: Helm
       annotations:
-        checksum/secret: a22c9571b533038d998a27f1d589d5157f75c8340b1c2698cdf61fbcc59b0509
+        checksum/secret: 221e61d8410e31890adeeae573a53bc93c867e5468e0c6266586467e2fa1ec3c
     spec:
       securityContext:
         fsGroup: 1001
         runAsUser: 1001
-      serviceAccountName: external-ddns-external-dns
+      serviceAccountName: external-dns
       containers:
         - name: external-dns
           image: "docker.io/bitnami/external-dns:0.7.2-debian-10-r6"
@@ -47,7 +47,7 @@ spec:
             - --interval=1m
             - --source=ingress
             # Azure Arguments
-            - --azure-resource-group=secret
+            - --azure-resource-group=potato
           env:
           ports:
             - name: http
@@ -79,4 +79,4 @@ spec:
         # Azure volume(s)
         - name: azure-config-file
           secret:
-            secretName: external-ddns-external-dns
+            secretName: external-dns
