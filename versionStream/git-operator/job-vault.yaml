@@ -24,7 +24,7 @@ spec:
         env:
         - name: XDG_CONFIG_HOME
           value: /workspace/xdg_config
-        image: mellardc/jx-secret:1.0
+        image: mellardc/jx-secret:2.0
         name: git-clone
         volumeMounts:
         - mountPath: /workspace
@@ -38,7 +38,7 @@ spec:
         env:
         - name: XDG_CONFIG_HOME
           value: /workspace/xdg_config
-        image: mellardc/jx-secret:1.0
+        image: mellardc/jx-secret:2.0
         imagePullPolicy: Always
         name: job
         volumeMounts:
