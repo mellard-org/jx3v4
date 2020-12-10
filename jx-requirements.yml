@@ -5,19 +5,19 @@ spec:
     enabled: false
     schedule: ""
   cluster:
+    azure:
+      dns:
+        resourceGroup: potato
+        subscriptionId: potato
+        tenantId: potato
+      secretStorage:
+        keyVaultName: potato
     chartRepository: http://jenkins-x-chartmuseum.jx.svc.cluster.local:8080
     gitKind: github
     gitName: github
     gitServer: https://github.com
     provider: aks
     registry: happymudfish.azurecr.io
-    azure:
-      dns:
-        resourceGroup: potato
-        tenantId: potato
-        subscriptionId: potato
-      secretStorage:
-        keyVaultName: potato
   environments:
   - key: dev
     owner: mellard-org
